@@ -1,0 +1,24 @@
+version: '3.7'
+
+networks:
+  dev-network:
+  my-netowrk:
+
+services:
+  app1:
+    image: testapp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: test_app1
+    environment:
+      - NODE_ENV="this is app1"
+      - EXTERNAL_PORT=9999
+      - CONTAINER_PROT=8080
+
+  mysql:
+    image: mysql:5.7
+    container_name: some-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
